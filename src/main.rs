@@ -5,16 +5,16 @@ use std::io::{self, BufRead};
 use std::path::Path;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let matches = App::new("Contador de Palavras e Caracteres")
+    let matches = App::new("Word and Character Counter")
         .version("1.0")
-        .author("Seu Nome")
-        .about("Conta o número de palavras e caracteres em um arquivo de texto (.txt)")
+        .author("Your Name")
+        .about("Counts the number of words and characters in a text file (.txt)")
         .arg(
             Arg::with_name("input")
                 .short("i")
                 .long("input")
-                .value_name("ARQUIVO")
-                .help("Especifique o arquivo de entrada (.txt)")
+                .value_name("FILE")
+                .help("Specify the input file (.txt)")
                 .required(true),
         )
         .get_matches();
@@ -24,18 +24,18 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     if let Some(ext) = path.extension() {
         if ext == "txt" {
-            processar_arquivo_texto(&path)?;
+            process_text_file(&path)?;
         } else {
-            eprintln!("Formato de arquivo não suportado. Este programa aceita apenas arquivos .txt.");
+            eprintln!("Unsupported file format. This program only accepts .txt files.");
         }
     } else {
-        eprintln!("Extensão de arquivo não encontrada.");
+        eprintln!("File extension not found.");
     }
 
     Ok(())
 }
 
-fn processar_arquivo_texto(path: &Path) -> Result<(), Box<dyn Error>> {
+fn process_text_file(path: &Path) -> Result<(), Box<dyn Error>> {
     let file = File::open(&path)?;
     let reader = io::BufReader::new(file);
 
@@ -49,8 +49,8 @@ fn processar_arquivo_texto(path: &Path) -> Result<(), Box<dyn Error>> {
         char_count += line.chars().filter(|c| !c.is_whitespace()).count();
     }
 
-    println!("Número de palavras: {}", word_count);
-    println!("Número de caracteres (sem espaços): {}", char_count);
+    println!("Number of words: {}", word_count);
+    println!("Number of characters (excluding spaces): {}", char_count);
 
     Ok(())
 }
