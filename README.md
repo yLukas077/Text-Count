@@ -15,7 +15,7 @@ Make sure you have Rust installed on your system. You can download it from [the 
 1. Clone this repository to your local machine or download the script directly.
 
    ```bash
-   git clone https://github.com/yLukas077/TextCount
+   git clone https://github.com/yLukas077/TextCount.git
 
    Navigate to the project directory.
 
