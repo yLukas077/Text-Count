@@ -11,7 +11,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .about("Counts the number of words and characters in a text file (.txt)")
         .arg(
             Arg::with_name("input")
-                .short("i")
+                .short('i')
                 .long("input")
                 .value_name("FILE")
                 .help("Specify the input file (.txt)")
